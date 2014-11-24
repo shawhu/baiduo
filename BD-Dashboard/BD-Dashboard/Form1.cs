@@ -37,10 +37,6 @@ namespace BD_Dashboard
                 lblStatus.Text = "通讯口6789被占用";
                 lblStatus.BackColor = Color.Red;
             }
-            
-            
-            
-            
         }
 
         //tcp server data in handler
@@ -63,6 +59,7 @@ namespace BD_Dashboard
             if (chkBeep.Checked)
                 Console.Beep(3000,100);
         }
+        //received data from sensors
         private void tcpServer1_OnConnect(tcpServer.TcpServerConnection connection)
         {
             //invokeDelegate setText = () => txtLog.Text = tcpServer1.Connections.Count.ToString();
@@ -72,12 +69,11 @@ namespace BD_Dashboard
         private void button1_Click(object sender, EventArgs e)
         {
             tcpServer1.Close();
-            timer1.Enabled = false;
+            timer1.Stop();
             this.Close();
         }
 
         private int recordcount = 0;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
         private void logData(bool sent, string text)
         {
             //try to save to the db
@@ -149,16 +145,6 @@ namespace BD_Dashboard
             }
         }
 
-
-
-
-
-
-
-
-
-
-
         protected byte[] readStream(TcpClient client)
         {
             NetworkStream stream = client.GetStream();
@@ -191,6 +177,57 @@ namespace BD_Dashboard
         private void timer1_Tick(object sender, EventArgs e)
         {
             displayTcpServerStatus();
+            //temp warning
+            if (Convert.ToDouble(lblTemp2.Text) > Convert.ToDouble(txtTemp2Hi.Text) || Convert.ToDouble(lblTemp2.Text) < Convert.ToDouble(txtTemp2Lo.Text))
+            {
+                Console.Beep(4000, 500);
+                Application.DoEvents();
+                lblTemp2.ForeColor = Color.Red;
+            }
+            else
+                lblTemp2.ForeColor = Color.Black;
+            if (Convert.ToDouble(lblTemp3.Text) > Convert.ToDouble(txtTemp3Hi.Text) || Convert.ToDouble(lblTemp3.Text) < Convert.ToDouble(txtTemp3Lo.Text))
+            {
+                Console.Beep(4000, 500);
+                Application.DoEvents();
+                lblTemp3.ForeColor = Color.Red;
+            }
+            else
+                lblTemp3.ForeColor = Color.Black;
+            if (Convert.ToDouble(lblTemp4.Text) > Convert.ToDouble(txtTemp4Hi.Text) || Convert.ToDouble(lblTemp4.Text) < Convert.ToDouble(txtTemp4Lo.Text))
+            {
+                Console.Beep(4000, 500);
+                Application.DoEvents();
+                lblTemp4.ForeColor = Color.Red;
+            }
+            else
+                lblTemp4.ForeColor = Color.Black;
+            //humidity warning
+            if (Convert.ToDouble(lblHumid2.Text) > Convert.ToDouble(txtHumid2Hi.Text) || Convert.ToDouble(lblHumid2.Text) < Convert.ToDouble(txtHumid2Lo.Text))
+            {
+                Console.Beep(4000, 500);
+                Application.DoEvents();
+                lblHumid2.ForeColor = Color.Red;
+            }
+            else
+                lblHumid2.ForeColor = Color.Black;
+            if (Convert.ToDouble(lblHumid3.Text) > Convert.ToDouble(txtHumid3Hi.Text) || Convert.ToDouble(lblHumid3.Text) < Convert.ToDouble(txtHumid3Lo.Text))
+            {
+                Console.Beep(4000, 500);
+                Application.DoEvents();
+                lblHumid3.ForeColor = Color.Red;
+            }
+            else
+                lblHumid3.ForeColor = Color.Black;
+            if (Convert.ToDouble(lblHumid4.Text) > Convert.ToDouble(txtHumid4Hi.Text) || Convert.ToDouble(lblHumid4.Text) < Convert.ToDouble(txtHumid4Lo.Text))
+            {
+                Console.Beep(4000, 500);
+                Application.DoEvents();
+                lblHumid4.ForeColor = Color.Red;
+            }
+            else
+                lblHumid4.ForeColor = Color.Black;
+
         }
 
         private void button2_Click(object sender, EventArgs e)

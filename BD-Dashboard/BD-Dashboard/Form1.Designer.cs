@@ -40,10 +40,10 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblTemp2 = new System.Windows.Forms.Label();
             this.lblHumid2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtTemp2Hi = new System.Windows.Forms.TextBox();
+            this.txtTemp2Lo = new System.Windows.Forms.TextBox();
+            this.txtHumid2Hi = new System.Windows.Forms.TextBox();
+            this.txtHumid2Lo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -56,10 +56,10 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtHumid3Lo = new System.Windows.Forms.TextBox();
+            this.txtHumid3Hi = new System.Windows.Forms.TextBox();
+            this.txtTemp3Lo = new System.Windows.Forms.TextBox();
+            this.txtTemp3Hi = new System.Windows.Forms.TextBox();
             this.lblHumid3 = new System.Windows.Forms.Label();
             this.lblTemp3 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -70,19 +70,19 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.txtHumid4Lo = new System.Windows.Forms.TextBox();
+            this.txtHumid4Hi = new System.Windows.Forms.TextBox();
+            this.txtTemp4Lo = new System.Windows.Forms.TextBox();
+            this.txtTemp4Hi = new System.Windows.Forms.TextBox();
             this.lblHumid4 = new System.Windows.Forms.Label();
             this.lblTemp4 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.tcpServer1 = new tcpServer.TcpServer(this.components);
             this.chkBeep = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.tcpServer1 = new tcpServer.TcpServer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -186,41 +186,41 @@
             this.lblHumid2.TabIndex = 21;
             this.lblHumid2.Text = "54.1";
             // 
-            // textBox1
+            // txtTemp2Hi
             // 
-            this.textBox1.Location = new System.Drawing.Point(312, 142);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(51, 31);
-            this.textBox1.TabIndex = 34;
-            this.textBox1.Text = "28.0";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTemp2Hi.Location = new System.Drawing.Point(312, 142);
+            this.txtTemp2Hi.Name = "txtTemp2Hi";
+            this.txtTemp2Hi.Size = new System.Drawing.Size(51, 31);
+            this.txtTemp2Hi.TabIndex = 34;
+            this.txtTemp2Hi.Text = "28.0";
+            this.txtTemp2Hi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox2
+            // txtTemp2Lo
             // 
-            this.textBox2.Location = new System.Drawing.Point(312, 200);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(51, 31);
-            this.textBox2.TabIndex = 35;
-            this.textBox2.Text = "20.0";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTemp2Lo.Location = new System.Drawing.Point(312, 200);
+            this.txtTemp2Lo.Name = "txtTemp2Lo";
+            this.txtTemp2Lo.Size = new System.Drawing.Size(51, 31);
+            this.txtTemp2Lo.TabIndex = 35;
+            this.txtTemp2Lo.Text = "20.0";
+            this.txtTemp2Lo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox3
+            // txtHumid2Hi
             // 
-            this.textBox3.Location = new System.Drawing.Point(576, 142);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(51, 31);
-            this.textBox3.TabIndex = 36;
-            this.textBox3.Text = "90.0";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHumid2Hi.Location = new System.Drawing.Point(576, 142);
+            this.txtHumid2Hi.Name = "txtHumid2Hi";
+            this.txtHumid2Hi.Size = new System.Drawing.Size(51, 31);
+            this.txtHumid2Hi.TabIndex = 36;
+            this.txtHumid2Hi.Text = "90.0";
+            this.txtHumid2Hi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox4
+            // txtHumid2Lo
             // 
-            this.textBox4.Location = new System.Drawing.Point(577, 202);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(51, 31);
-            this.textBox4.TabIndex = 37;
-            this.textBox4.Text = "82.0";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHumid2Lo.Location = new System.Drawing.Point(577, 202);
+            this.txtHumid2Lo.Name = "txtHumid2Lo";
+            this.txtHumid2Lo.Size = new System.Drawing.Size(51, 31);
+            this.txtHumid2Lo.TabIndex = 37;
+            this.txtHumid2Lo.Text = "70";
+            this.txtHumid2Lo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
             // 
@@ -275,6 +275,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // lblStatus
@@ -341,41 +342,41 @@
             this.label16.TabIndex = 55;
             this.label16.Text = "Hi";
             // 
-            // textBox5
+            // txtHumid3Lo
             // 
-            this.textBox5.Location = new System.Drawing.Point(577, 327);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(51, 31);
-            this.textBox5.TabIndex = 54;
-            this.textBox5.Text = "82.0";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHumid3Lo.Location = new System.Drawing.Point(577, 327);
+            this.txtHumid3Lo.Name = "txtHumid3Lo";
+            this.txtHumid3Lo.Size = new System.Drawing.Size(51, 31);
+            this.txtHumid3Lo.TabIndex = 54;
+            this.txtHumid3Lo.Text = "70";
+            this.txtHumid3Lo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox6
+            // txtHumid3Hi
             // 
-            this.textBox6.Location = new System.Drawing.Point(576, 267);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(51, 31);
-            this.textBox6.TabIndex = 53;
-            this.textBox6.Text = "90.0";
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHumid3Hi.Location = new System.Drawing.Point(576, 267);
+            this.txtHumid3Hi.Name = "txtHumid3Hi";
+            this.txtHumid3Hi.Size = new System.Drawing.Size(51, 31);
+            this.txtHumid3Hi.TabIndex = 53;
+            this.txtHumid3Hi.Text = "90.0";
+            this.txtHumid3Hi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox7
+            // txtTemp3Lo
             // 
-            this.textBox7.Location = new System.Drawing.Point(312, 325);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(51, 31);
-            this.textBox7.TabIndex = 52;
-            this.textBox7.Text = "20.0";
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTemp3Lo.Location = new System.Drawing.Point(312, 325);
+            this.txtTemp3Lo.Name = "txtTemp3Lo";
+            this.txtTemp3Lo.Size = new System.Drawing.Size(51, 31);
+            this.txtTemp3Lo.TabIndex = 52;
+            this.txtTemp3Lo.Text = "20.0";
+            this.txtTemp3Lo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox8
+            // txtTemp3Hi
             // 
-            this.textBox8.Location = new System.Drawing.Point(312, 267);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(51, 31);
-            this.textBox8.TabIndex = 51;
-            this.textBox8.Text = "28.0";
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTemp3Hi.Location = new System.Drawing.Point(312, 267);
+            this.txtTemp3Hi.Name = "txtTemp3Hi";
+            this.txtTemp3Hi.Size = new System.Drawing.Size(51, 31);
+            this.txtTemp3Hi.TabIndex = 51;
+            this.txtTemp3Hi.Text = "28.0";
+            this.txtTemp3Hi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblHumid3
             // 
@@ -477,41 +478,41 @@
             this.label26.TabIndex = 69;
             this.label26.Text = "Hi";
             // 
-            // textBox9
+            // txtHumid4Lo
             // 
-            this.textBox9.Location = new System.Drawing.Point(576, 454);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(51, 31);
-            this.textBox9.TabIndex = 68;
-            this.textBox9.Text = "82.0";
-            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHumid4Lo.Location = new System.Drawing.Point(576, 454);
+            this.txtHumid4Lo.Name = "txtHumid4Lo";
+            this.txtHumid4Lo.Size = new System.Drawing.Size(51, 31);
+            this.txtHumid4Lo.TabIndex = 68;
+            this.txtHumid4Lo.Text = "70";
+            this.txtHumid4Lo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox10
+            // txtHumid4Hi
             // 
-            this.textBox10.Location = new System.Drawing.Point(575, 394);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(51, 31);
-            this.textBox10.TabIndex = 67;
-            this.textBox10.Text = "90.0";
-            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHumid4Hi.Location = new System.Drawing.Point(575, 394);
+            this.txtHumid4Hi.Name = "txtHumid4Hi";
+            this.txtHumid4Hi.Size = new System.Drawing.Size(51, 31);
+            this.txtHumid4Hi.TabIndex = 67;
+            this.txtHumid4Hi.Text = "90.0";
+            this.txtHumid4Hi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox11
+            // txtTemp4Lo
             // 
-            this.textBox11.Location = new System.Drawing.Point(311, 452);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(51, 31);
-            this.textBox11.TabIndex = 66;
-            this.textBox11.Text = "20.0";
-            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTemp4Lo.Location = new System.Drawing.Point(311, 452);
+            this.txtTemp4Lo.Name = "txtTemp4Lo";
+            this.txtTemp4Lo.Size = new System.Drawing.Size(51, 31);
+            this.txtTemp4Lo.TabIndex = 66;
+            this.txtTemp4Lo.Text = "20.0";
+            this.txtTemp4Lo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox12
+            // txtTemp4Hi
             // 
-            this.textBox12.Location = new System.Drawing.Point(311, 394);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(51, 31);
-            this.textBox12.TabIndex = 65;
-            this.textBox12.Text = "28.0";
-            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTemp4Hi.Location = new System.Drawing.Point(311, 394);
+            this.txtTemp4Hi.Name = "txtTemp4Hi";
+            this.txtTemp4Hi.Size = new System.Drawing.Size(51, 31);
+            this.txtTemp4Hi.TabIndex = 65;
+            this.txtTemp4Hi.Text = "28.0";
+            this.txtTemp4Hi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblHumid4
             // 
@@ -573,18 +574,6 @@
             this.label32.TabIndex = 59;
             this.label32.Text = "温度";
             // 
-            // tcpServer1
-            // 
-            this.tcpServer1.Encoding = ((System.Text.Encoding)(resources.GetObject("tcpServer1.Encoding")));
-            this.tcpServer1.IdleTime = 50;
-            this.tcpServer1.IsOpen = false;
-            this.tcpServer1.MaxCallbackThreads = 100;
-            this.tcpServer1.MaxSendAttempts = 3;
-            this.tcpServer1.Port = -1;
-            this.tcpServer1.VerifyConnectionInterval = 0;
-            this.tcpServer1.OnConnect += new tcpServer.tcpServerConnectionChanged(this.tcpServer1_OnConnect);
-            this.tcpServer1.OnDataAvailable += new tcpServer.tcpServerConnectionChanged(this.tcpServer1_OnDataAvailable);
-            // 
             // chkBeep
             // 
             this.chkBeep.AutoSize = true;
@@ -606,6 +595,18 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // tcpServer1
+            // 
+            this.tcpServer1.Encoding = ((System.Text.Encoding)(resources.GetObject("tcpServer1.Encoding")));
+            this.tcpServer1.IdleTime = 50;
+            this.tcpServer1.IsOpen = false;
+            this.tcpServer1.MaxCallbackThreads = 100;
+            this.tcpServer1.MaxSendAttempts = 3;
+            this.tcpServer1.Port = -1;
+            this.tcpServer1.VerifyConnectionInterval = 0;
+            this.tcpServer1.OnConnect += new tcpServer.tcpServerConnectionChanged(this.tcpServer1_OnConnect);
+            this.tcpServer1.OnDataAvailable += new tcpServer.tcpServerConnectionChanged(this.tcpServer1_OnDataAvailable);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -618,10 +619,10 @@
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label26);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.txtHumid4Lo);
+            this.Controls.Add(this.txtHumid4Hi);
+            this.Controls.Add(this.txtTemp4Lo);
+            this.Controls.Add(this.txtTemp4Hi);
             this.Controls.Add(this.lblHumid4);
             this.Controls.Add(this.lblTemp4);
             this.Controls.Add(this.label29);
@@ -632,10 +633,10 @@
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.txtHumid3Lo);
+            this.Controls.Add(this.txtHumid3Hi);
+            this.Controls.Add(this.txtTemp3Lo);
+            this.Controls.Add(this.txtTemp3Hi);
             this.Controls.Add(this.lblHumid3);
             this.Controls.Add(this.lblTemp3);
             this.Controls.Add(this.label19);
@@ -649,10 +650,10 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtHumid2Lo);
+            this.Controls.Add(this.txtHumid2Hi);
+            this.Controls.Add(this.txtTemp2Lo);
+            this.Controls.Add(this.txtTemp2Hi);
             this.Controls.Add(this.lblHumid2);
             this.Controls.Add(this.lblTemp2);
             this.Controls.Add(this.label12);
@@ -686,10 +687,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblTemp2;
         private System.Windows.Forms.Label lblHumid2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtTemp2Hi;
+        private System.Windows.Forms.TextBox txtTemp2Lo;
+        private System.Windows.Forms.TextBox txtHumid2Hi;
+        private System.Windows.Forms.TextBox txtHumid2Lo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -703,10 +704,10 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtHumid3Lo;
+        private System.Windows.Forms.TextBox txtHumid3Hi;
+        private System.Windows.Forms.TextBox txtTemp3Lo;
+        private System.Windows.Forms.TextBox txtTemp3Hi;
         private System.Windows.Forms.Label lblHumid3;
         private System.Windows.Forms.Label lblTemp3;
         private System.Windows.Forms.Label label19;
@@ -717,10 +718,10 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox txtHumid4Lo;
+        private System.Windows.Forms.TextBox txtHumid4Hi;
+        private System.Windows.Forms.TextBox txtTemp4Lo;
+        private System.Windows.Forms.TextBox txtTemp4Hi;
         private System.Windows.Forms.Label lblHumid4;
         private System.Windows.Forms.Label lblTemp4;
         private System.Windows.Forms.Label label29;
