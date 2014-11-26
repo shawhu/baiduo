@@ -11,6 +11,8 @@ using System.IO;
 using System.Net.Sockets;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Deployment.Application;
+using System.Reflection;
 
 namespace BD_Dashboard
 {
@@ -56,8 +58,6 @@ namespace BD_Dashboard
 
                 data = null;
             }
-            if (chkBeep.Checked)
-                Console.Beep(3000,100);
         }
         //received data from sensors
         private void tcpServer1_OnConnect(tcpServer.TcpServerConnection connection)
@@ -68,8 +68,8 @@ namespace BD_Dashboard
         //close button
         private void button1_Click(object sender, EventArgs e)
         {
-            tcpServer1.Close();
             timer1.Stop();
+            tcpServer1.Close();
             this.Close();
         }
 
@@ -78,13 +78,32 @@ namespace BD_Dashboard
         {
             //try to save to the db
             string[] strtmp = text.Split(',');
-            double humid2 = Convert.ToDouble(strtmp[0]);
-            double temp2 = Convert.ToDouble(strtmp[1]);
-            double humid3 = Convert.ToDouble(strtmp[2]);
-            double temp3 = Convert.ToDouble(strtmp[3]);
-            double humid4 = Convert.ToDouble(strtmp[4]);
-            double temp4 = Convert.ToDouble(strtmp[5]);
-
+            double humid2 = -99;
+            double temp2 = -99;
+            double humid3 = -99;
+            double temp3 = -99;
+            double humid4 = -99;
+            double temp4 = -99;
+            double avgtemp = -99;
+            double avghumid = -99;
+            try
+            {
+                humid2 = Convert.ToDouble(strtmp[0]);
+                temp2 = Convert.ToDouble(strtmp[1]);
+                humid3 = Convert.ToDouble(strtmp[2]);
+                temp3 = Convert.ToDouble(strtmp[3]);
+                humid4 = Convert.ToDouble(strtmp[4]);
+                temp4 = Convert.ToDouble(strtmp[5]);
+            }
+            catch
+            { }
+            //try to find avg
+            if (humid2 != -99 && humid3 != -99 && humid4 != -99)
+                avghumid = (humid2 + humid3 + humid4) / 3;
+            if (temp2 != -99 && temp3 != -99 && temp4 != -99)
+                avgtemp = (temp2 + temp3 + temp4) / 3;
+            lblAvgHumid.Text = Math.Round(avghumid,1).ToString()+"";
+            lblAvgTemp.Text = Math.Round(avgtemp, 1).ToString();
 
             //try to update lables
             lblTemp2.Text = temp2.ToString();
@@ -101,21 +120,50 @@ namespace BD_Dashboard
             SqlCommand cm = new SqlCommand();
             cm.Connection = cn;
             cm.CommandType = CommandType.Text;
-            cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid2.ToString() + ",'humid2')";
-            cm.ExecuteNonQuery();
-            cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp2.ToString() + ",'temp2')";
-            cm.ExecuteNonQuery();
-            cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid3.ToString() + ",'humid3')";
-            cm.ExecuteNonQuery();
-            cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp3.ToString() + ",'temp3')";
-            cm.ExecuteNonQuery();
-            cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid3.ToString() + ",'humid4')";
-            cm.ExecuteNonQuery();
-            cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp3.ToString() + ",'temp4')";
-            cm.ExecuteNonQuery();
+            /*
+            if (humid2 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid2.ToString() + ",'humid2')";
+                cm.ExecuteNonQuery();
+            }
+            if (temp2 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp2.ToString() + ",'temp2')";
+                cm.ExecuteNonQuery();
+            }
+            if (humid3 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid3.ToString() + ",'humid3')";
+                cm.ExecuteNonQuery();
+            }
+            if (temp3 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp3.ToString() + ",'temp3')";
+                cm.ExecuteNonQuery();
+            }
+            if (humid4 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid4.ToString() + ",'humid4')";
+                cm.ExecuteNonQuery();
+            }
+            if (temp4 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp4.ToString() + ",'temp4')";
+                cm.ExecuteNonQuery();
+            }
+            */
+            //avg
+            if (avghumid != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + avghumid.ToString() + ",'avghumid')";
+                cm.ExecuteNonQuery();
+            }
+            if (avgtemp != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + avgtemp.ToString() + ",'avgtemp')";
+                cm.ExecuteNonQuery();
+            }
             cn.Close();
-
-            System.Media.SystemSounds.Exclamation.Play();
 
             //display the log data
             recordcount++;
@@ -171,33 +219,35 @@ namespace BD_Dashboard
             }
             return null;
         }
-        
-        
+
+        int warning_duration = 1;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            this.Text = @"百朵食用菌有限公司 - 管理控制台 v" + GetCurrentVersion;
             displayTcpServerStatus();
+            if (chkBeep.Checked)
+                warning_duration = 100;
+            else
+                warning_duration = 1;
             //temp warning
             if (Convert.ToDouble(lblTemp2.Text) > Convert.ToDouble(txtTemp2Hi.Text) || Convert.ToDouble(lblTemp2.Text) < Convert.ToDouble(txtTemp2Lo.Text))
             {
-                Console.Beep(4000, 500);
-                Application.DoEvents();
+                Console.Beep(4000, warning_duration);
                 lblTemp2.ForeColor = Color.Red;
             }
             else
                 lblTemp2.ForeColor = Color.Black;
             if (Convert.ToDouble(lblTemp3.Text) > Convert.ToDouble(txtTemp3Hi.Text) || Convert.ToDouble(lblTemp3.Text) < Convert.ToDouble(txtTemp3Lo.Text))
             {
-                Console.Beep(4000, 500);
-                Application.DoEvents();
+                Console.Beep(4000, warning_duration);
                 lblTemp3.ForeColor = Color.Red;
             }
             else
                 lblTemp3.ForeColor = Color.Black;
             if (Convert.ToDouble(lblTemp4.Text) > Convert.ToDouble(txtTemp4Hi.Text) || Convert.ToDouble(lblTemp4.Text) < Convert.ToDouble(txtTemp4Lo.Text))
             {
-                Console.Beep(4000, 500);
-                Application.DoEvents();
+                Console.Beep(4000, warning_duration);
                 lblTemp4.ForeColor = Color.Red;
             }
             else
@@ -205,35 +255,42 @@ namespace BD_Dashboard
             //humidity warning
             if (Convert.ToDouble(lblHumid2.Text) > Convert.ToDouble(txtHumid2Hi.Text) || Convert.ToDouble(lblHumid2.Text) < Convert.ToDouble(txtHumid2Lo.Text))
             {
-                Console.Beep(4000, 500);
-                Application.DoEvents();
+                Console.Beep(4000, warning_duration);
                 lblHumid2.ForeColor = Color.Red;
             }
             else
                 lblHumid2.ForeColor = Color.Black;
             if (Convert.ToDouble(lblHumid3.Text) > Convert.ToDouble(txtHumid3Hi.Text) || Convert.ToDouble(lblHumid3.Text) < Convert.ToDouble(txtHumid3Lo.Text))
             {
-                Console.Beep(4000, 500);
-                Application.DoEvents();
+                Console.Beep(4000, warning_duration);
                 lblHumid3.ForeColor = Color.Red;
             }
             else
                 lblHumid3.ForeColor = Color.Black;
             if (Convert.ToDouble(lblHumid4.Text) > Convert.ToDouble(txtHumid4Hi.Text) || Convert.ToDouble(lblHumid4.Text) < Convert.ToDouble(txtHumid4Lo.Text))
             {
-                Console.Beep(4000, 500);
-                Application.DoEvents();
+                Console.Beep(4000, warning_duration);
                 lblHumid4.ForeColor = Color.Red;
             }
             else
                 lblHumid4.ForeColor = Color.Black;
-
+            Application.DoEvents();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             frmHistory frm1 = new frmHistory();
             frm1.ShowDialog();
+        }
+
+        public string GetCurrentVersion
+        {
+            get
+            {
+                return ApplicationDeployment.IsNetworkDeployed
+                       ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
+                       : Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
         }
     }
 }
