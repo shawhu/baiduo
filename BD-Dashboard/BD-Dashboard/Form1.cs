@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Deployment.Application;
 using System.Reflection;
+using ServiceStack;
 
 namespace BD_Dashboard
 {
@@ -65,13 +66,7 @@ namespace BD_Dashboard
             //invokeDelegate setText = () => txtLog.Text = tcpServer1.Connections.Count.ToString();
             //Invoke(setText);
         }
-        //close button
-        private void button1_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            tcpServer1.Close();
-            this.Close();
-        }
+        
 
         private int recordcount = 0;
         private void logData(bool sent, string text)
@@ -164,6 +159,14 @@ namespace BD_Dashboard
                 cm.ExecuteNonQuery();
             }
             cn.Close();
+
+            //try to update the server
+            try
+            {
+                save2server(avgtemp.ToString() + "," + avghumid.ToString() + ",0");
+            }
+            catch { }
+            
 
             //display the log data
             recordcount++;
@@ -276,7 +279,7 @@ namespace BD_Dashboard
                 lblHumid4.ForeColor = Color.Black;
             Application.DoEvents();
         }
-
+        //show history form
         private void button2_Click(object sender, EventArgs e)
         {
             frmHistory frm1 = new frmHistory();
@@ -291,6 +294,22 @@ namespace BD_Dashboard
                        ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
                        : Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
+        }
+
+        private void save2server(string data)
+        {
+            var client = new JsonServiceClient(System.Configuration.ConfigurationManager.AppSettings["bd-server-url"]);
+            BD_Server.reqDTO_SensorData request = new BD_Server.reqDTO_SensorData();
+            request.data = data;
+            BD_Server.ResponseDTO response = client.Post<BD_Server.ResponseDTO>(request);
+
+        }
+        //close button
+        private void button1_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            tcpServer1.Close();
+            this.Close();
         }
     }
 }
