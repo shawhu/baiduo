@@ -81,14 +81,31 @@ namespace BD_Dashboard
             double temp4 = -99;
             double avgtemp = -99;
             double avghumid = -99;
+            double co2 = -99;
             try
             {
                 humid2 = Convert.ToDouble(strtmp[0]);
                 temp2 = Convert.ToDouble(strtmp[1]);
+            }
+            catch
+            { }
+            try
+            {
                 humid3 = Convert.ToDouble(strtmp[2]);
                 temp3 = Convert.ToDouble(strtmp[3]);
+            }
+            catch
+            { }
+            try
+            {
                 humid4 = Convert.ToDouble(strtmp[4]);
                 temp4 = Convert.ToDouble(strtmp[5]);
+            }
+            catch
+            { }
+            try
+            {
+                co2 = Convert.ToDouble(strtmp[6]);
             }
             catch
             { }
@@ -107,6 +124,7 @@ namespace BD_Dashboard
             lblHumid3.Text = humid3.ToString();
             lblTemp4.Text = temp4.ToString();
             lblHumid4.Text = humid4.ToString();
+            lblCO2.Text = co2.ToString();
 
 
             SqlConnection cn = new SqlConnection();
@@ -158,12 +176,17 @@ namespace BD_Dashboard
                 cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + avgtemp.ToString() + ",'avgtemp')";
                 cm.ExecuteNonQuery();
             }
+            if (co2 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + co2.ToString() + ",'co2')";
+                cm.ExecuteNonQuery();
+            }
             cn.Close();
 
             //try to update the server
             try
             {
-                save2server(avgtemp.ToString() + "," + avghumid.ToString() + ",0");
+                save2server(avgtemp.ToString() + "," + avghumid.ToString() + ","+co2.ToString());
             }
             catch { }
             

@@ -82,12 +82,15 @@
             this.label32 = new System.Windows.Forms.Label();
             this.chkBeep = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.tcpServer1 = new tcpServer.TcpServer(this.components);
             this.lblAvgTemp = new System.Windows.Forms.Label();
             this.lblAvgHumid = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
+            this.tcpServer1 = new tcpServer.TcpServer(this.components);
+            this.label28 = new System.Windows.Forms.Label();
+            this.lblCO2 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -270,7 +273,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(667, 549);
+            this.button1.Location = new System.Drawing.Point(667, 593);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(109, 36);
             this.button1.TabIndex = 42;
@@ -288,7 +291,7 @@
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("SimHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblStatus.Location = new System.Drawing.Point(12, 564);
+            this.lblStatus.Location = new System.Drawing.Point(12, 616);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(77, 13);
             this.lblStatus.TabIndex = 43;
@@ -300,7 +303,7 @@
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLog.Font = new System.Drawing.Font("SimHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtLog.Location = new System.Drawing.Point(1, 610);
+            this.txtLog.Location = new System.Drawing.Point(1, 654);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -585,7 +588,7 @@
             this.chkBeep.Checked = true;
             this.chkBeep.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkBeep.Font = new System.Drawing.Font("SimHei", 9.75F);
-            this.chkBeep.Location = new System.Drawing.Point(95, 563);
+            this.chkBeep.Location = new System.Drawing.Point(95, 615);
             this.chkBeep.Name = "chkBeep";
             this.chkBeep.Size = new System.Drawing.Size(82, 17);
             this.chkBeep.TabIndex = 73;
@@ -594,7 +597,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(544, 549);
+            this.button2.Location = new System.Drawing.Point(548, 593);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(111, 36);
             this.button2.TabIndex = 74;
@@ -602,23 +605,11 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // tcpServer1
-            // 
-            this.tcpServer1.Encoding = ((System.Text.Encoding)(resources.GetObject("tcpServer1.Encoding")));
-            this.tcpServer1.IdleTime = 50;
-            this.tcpServer1.IsOpen = false;
-            this.tcpServer1.MaxCallbackThreads = 100;
-            this.tcpServer1.MaxSendAttempts = 3;
-            this.tcpServer1.Port = -1;
-            this.tcpServer1.VerifyConnectionInterval = 0;
-            this.tcpServer1.OnConnect += new tcpServer.tcpServerConnectionChanged(this.tcpServer1_OnConnect);
-            this.tcpServer1.OnDataAvailable += new tcpServer.tcpServerConnectionChanged(this.tcpServer1_OnDataAvailable);
-            // 
             // lblAvgTemp
             // 
             this.lblAvgTemp.AutoSize = true;
             this.lblAvgTemp.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvgTemp.Location = new System.Drawing.Point(317, 90);
+            this.lblAvgTemp.Location = new System.Drawing.Point(313, 90);
             this.lblAvgTemp.Name = "lblAvgTemp";
             this.lblAvgTemp.Size = new System.Drawing.Size(52, 24);
             this.lblAvgTemp.TabIndex = 75;
@@ -628,7 +619,7 @@
             // 
             this.lblAvgHumid.AutoSize = true;
             this.lblAvgHumid.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvgHumid.Location = new System.Drawing.Point(577, 90);
+            this.lblAvgHumid.Location = new System.Drawing.Point(574, 90);
             this.lblAvgHumid.Name = "lblAvgHumid";
             this.lblAvgHumid.Size = new System.Drawing.Size(52, 24);
             this.lblAvgHumid.TabIndex = 76;
@@ -640,9 +631,9 @@
             this.label17.Location = new System.Drawing.Point(103, 91);
             this.label17.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(109, 21);
+            this.label17.Size = new System.Drawing.Size(76, 21);
             this.label17.TabIndex = 77;
-            this.label17.Text = "2号传感器";
+            this.label17.Text = "平均值";
             // 
             // label18
             // 
@@ -666,12 +657,57 @@
             this.label27.TabIndex = 79;
             this.label27.Text = "%";
             // 
+            // tcpServer1
+            // 
+            this.tcpServer1.Encoding = ((System.Text.Encoding)(resources.GetObject("tcpServer1.Encoding")));
+            this.tcpServer1.IdleTime = 50;
+            this.tcpServer1.IsOpen = false;
+            this.tcpServer1.MaxCallbackThreads = 100;
+            this.tcpServer1.MaxSendAttempts = 3;
+            this.tcpServer1.Port = -1;
+            this.tcpServer1.VerifyConnectionInterval = 0;
+            this.tcpServer1.OnConnect += new tcpServer.tcpServerConnectionChanged(this.tcpServer1_OnConnect);
+            this.tcpServer1.OnDataAvailable += new tcpServer.tcpServerConnectionChanged(this.tcpServer1_OnDataAvailable);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(103, 548);
+            this.label28.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(109, 21);
+            this.label28.TabIndex = 80;
+            this.label28.Text = "CO2传感器";
+            // 
+            // lblCO2
+            // 
+            this.lblCO2.AutoSize = true;
+            this.lblCO2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCO2.Location = new System.Drawing.Point(300, 547);
+            this.lblCO2.Name = "lblCO2";
+            this.lblCO2.Size = new System.Drawing.Size(58, 24);
+            this.lblCO2.TabIndex = 81;
+            this.lblCO2.Text = "5000";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(367, 547);
+            this.label34.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(48, 24);
+            this.label34.TabIndex = 82;
+            this.label34.Text = "ppm";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 661);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(784, 705);
+            this.Controls.Add(this.label34);
+            this.Controls.Add(this.lblCO2);
+            this.Controls.Add(this.label28);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
@@ -799,6 +835,9 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label lblCO2;
+        private System.Windows.Forms.Label label34;
     }
 }
 
