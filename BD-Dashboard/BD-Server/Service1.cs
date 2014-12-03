@@ -64,5 +64,17 @@ namespace BD_Server
             return result;
         }
 
+
+
+
+        //sensor interval
+        public object GET(reqDTO_SensorInterval request)
+        {
+            return "6";
+        }
+
+
+
+
     }
 }

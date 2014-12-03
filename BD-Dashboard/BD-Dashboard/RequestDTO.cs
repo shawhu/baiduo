@@ -22,4 +22,10 @@ namespace BD_Server
         public string data { get; set; }
     }
 
+    [Route("/sensorinterval")]
+    public class reqDTO_SensorInterval
+    {
+        public string data { get; set; }
+    }
+
 }

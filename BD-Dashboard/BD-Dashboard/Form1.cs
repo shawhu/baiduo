@@ -24,7 +24,7 @@ namespace BD_Dashboard
         {
             InitializeComponent();
         }
-
+        private int server_upload_interval = 6;
         private void Form1_Load(object sender, EventArgs e)
         {
             //try to start tcp server
@@ -40,6 +40,15 @@ namespace BD_Dashboard
                 lblStatus.Text = "通讯口6789被占用";
                 lblStatus.BackColor = Color.Red;
             }
+            //only upload to the cloud server when record count is dividable by 6, 5s turn to 30s
+            server_upload_interval = Convert.ToInt32(ConfigurationManager.AppSettings["server_upload_interval"]);
+            //try to load the interval time from the internet
+            try
+            {
+                server_upload_interval = getinterval();
+            }
+            catch { }
+
         }
 
         //tcp server data in handler
@@ -71,6 +80,9 @@ namespace BD_Dashboard
         private int recordcount = 0;
         private void logData(bool sent, string text)
         {
+            //increment recordcount
+            recordcount++;
+            
             //try to save to the db
             string[] strtmp = text.Split(',');
             double humid2 = -99;
@@ -184,15 +196,18 @@ namespace BD_Dashboard
             cn.Close();
 
             //try to update the server
-            try
+            
+            if (recordcount % server_upload_interval == 0)
             {
-                save2server(avgtemp.ToString() + "," + avghumid.ToString() + ","+co2.ToString());
+                try
+                {
+                    save2server(avgtemp.ToString() + "," + avghumid.ToString() + "," + co2.ToString());
+                }
+                catch { }
             }
-            catch { }
             
 
             //display the log data
-            recordcount++;
             txtLog.Text += "["+recordcount.ToString()+"] " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss tt") + (sent ? " SENT: " : " RECEIVED: ");
             txtLog.Text += text+"\r\n";
             if (txtLog.Lines.Length > 500)
@@ -325,7 +340,14 @@ namespace BD_Dashboard
             BD_Server.reqDTO_SensorData request = new BD_Server.reqDTO_SensorData();
             request.data = data;
             BD_Server.ResponseDTO response = client.Post<BD_Server.ResponseDTO>(request);
+        }
 
+        private int getinterval()
+        {
+            var client = new JsonServiceClient(System.Configuration.ConfigurationManager.AppSettings["bd-server-url"]);
+            BD_Server.reqDTO_SensorInterval request = new BD_Server.reqDTO_SensorInterval();
+            string response = client.Get<string>(request);
+            return Convert.ToInt32(response);
         }
         //close button
         private void button1_Click(object sender, EventArgs e)
@@ -334,5 +356,7 @@ namespace BD_Dashboard
             tcpServer1.Close();
             this.Close();
         }
+
+        
     }
 }
