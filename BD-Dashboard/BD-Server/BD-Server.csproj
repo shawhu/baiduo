@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\aceweb.pubxml" />
     <None Include="Properties\PublishProfiles\bd-publishlocal.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
