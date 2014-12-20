@@ -13,7 +13,7 @@ namespace BD_Server
         public class AppHost : AppHostBase
         {
             //Tell ServiceStack the name of your application and where to find your services
-            public AppHost() : base("Hello Web Services", typeof(Service1).Assembly) { }
+            public AppHost() : base("Baiduo Web Services", typeof(Service1).Assembly) { }
 
             public override void Configure(Funq.Container container)
             {
