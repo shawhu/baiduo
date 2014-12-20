@@ -34,6 +34,10 @@ namespace BD_Server
             double humidity = Convert.ToDouble(array1[1].ToString());
             double co2lvl = Convert.ToDouble(array1[2].ToString());
 
+            temp = Math.Round(temp, 1);
+            humidity = Math.Round(humidity, 1);
+            co2lvl = Math.Round(co2lvl, 1);
+
             SqlDataObject dbo = new SqlDataObject();
             dbo.SqlComm = "insert into sensor_data (data_type,data_value,station_id) values ('temp'," + temp.ToString() + ",2);";
             dbo.SqlComm += "insert into sensor_data (data_type,data_value,station_id) values ('humid'," + humidity.ToString() + ",2);";
