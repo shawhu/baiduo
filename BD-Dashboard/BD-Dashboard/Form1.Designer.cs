@@ -91,6 +91,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.lblCO2 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -283,7 +284,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 2000;
+            this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // lblStatus
@@ -700,11 +701,22 @@
             this.label34.TabIndex = 82;
             this.label34.Text = "ppm";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(417, 593);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(106, 39);
+            this.button3.TabIndex = 83;
+            this.button3.Text = "开关测试";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 705);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label34);
             this.Controls.Add(this.lblCO2);
             this.Controls.Add(this.label28);
@@ -769,6 +781,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "百朵食用菌有限公司 - 管理控制台";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -838,6 +851,7 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label lblCO2;
         private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button button3;
     }
 }
 

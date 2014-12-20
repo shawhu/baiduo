@@ -145,7 +145,7 @@ namespace BD_Dashboard
             SqlCommand cm = new SqlCommand();
             cm.Connection = cn;
             cm.CommandType = CommandType.Text;
-            /*
+            
             if (humid2 != -99)
             {
                 cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid2.ToString() + ",'humid2')";
@@ -176,7 +176,7 @@ namespace BD_Dashboard
                 cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp4.ToString() + ",'temp4')";
                 cm.ExecuteNonQuery();
             }
-            */
+            /*
             //avg
             if (avghumid != -99)
             {
@@ -194,7 +194,7 @@ namespace BD_Dashboard
                 cm.ExecuteNonQuery();
             }
             cn.Close();
-
+            */
             //try to update the server
             
             if (recordcount % server_upload_interval == 0)
@@ -261,35 +261,57 @@ namespace BD_Dashboard
             return null;
         }
 
-        int warning_duration = 1;
+        int warning_duration = 100;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.Text = @"百朵食用菌有限公司 - 管理控制台 v" + GetCurrentVersion;
             displayTcpServerStatus();
-            if (chkBeep.Checked)
-                warning_duration = 100;
-            else
-                warning_duration = 1;
             //temp warning
-            if (Convert.ToDouble(lblTemp2.Text) > Convert.ToDouble(txtTemp2Hi.Text) || Convert.ToDouble(lblTemp2.Text) < Convert.ToDouble(txtTemp2Lo.Text))
+            if (Convert.ToDouble(lblTemp2.Text) > Convert.ToDouble(txtTemp2Hi.Text))
             {
-                Console.Beep(4000, warning_duration);
+                if (chkBeep.Checked)
+                    Console.Beep(4000, warning_duration);
                 lblTemp2.ForeColor = Color.Red;
+                tcpServer1.Send("d2_off");
+            }
+            else if (Convert.ToDouble(lblTemp2.Text) < Convert.ToDouble(txtTemp2Lo.Text))
+            {
+                if (chkBeep.Checked)
+                    Console.Beep(4000, warning_duration);
+                lblTemp2.ForeColor = Color.Red;
+                tcpServer1.Send("d2_on");
             }
             else
                 lblTemp2.ForeColor = Color.Black;
-            if (Convert.ToDouble(lblTemp3.Text) > Convert.ToDouble(txtTemp3Hi.Text) || Convert.ToDouble(lblTemp3.Text) < Convert.ToDouble(txtTemp3Lo.Text))
+            if (Convert.ToDouble(lblTemp3.Text) > Convert.ToDouble(txtTemp3Hi.Text))
             {
-                Console.Beep(4000, warning_duration);
+                if (chkBeep.Checked)
+                    Console.Beep(4000, warning_duration);
                 lblTemp3.ForeColor = Color.Red;
+                tcpServer1.Send("d3_off");
+            }
+            else if (Convert.ToDouble(lblTemp3.Text) < Convert.ToDouble(txtTemp3Lo.Text))
+            {
+                if (chkBeep.Checked)
+                    Console.Beep(4000, warning_duration);
+                lblTemp3.ForeColor = Color.Red;
+                tcpServer1.Send("d3_on");
             }
             else
                 lblTemp3.ForeColor = Color.Black;
-            if (Convert.ToDouble(lblTemp4.Text) > Convert.ToDouble(txtTemp4Hi.Text) || Convert.ToDouble(lblTemp4.Text) < Convert.ToDouble(txtTemp4Lo.Text))
+            if (Convert.ToDouble(lblTemp4.Text) > Convert.ToDouble(txtTemp4Hi.Text))
+            {
+                if (chkBeep.Checked)
+                    Console.Beep(4000, warning_duration);
+                lblTemp4.ForeColor = Color.Red;
+                tcpServer1.Send("d4_off");
+            }
+            else if (Convert.ToDouble(lblTemp4.Text) < Convert.ToDouble(txtTemp4Lo.Text))
             {
                 Console.Beep(4000, warning_duration);
                 lblTemp4.ForeColor = Color.Red;
+                tcpServer1.Send("d4_on");
             }
             else
                 lblTemp4.ForeColor = Color.Black;
@@ -336,10 +358,12 @@ namespace BD_Dashboard
 
         private void save2server(string data)
         {
+            /*
             var client = new JsonServiceClient(System.Configuration.ConfigurationManager.AppSettings["bd-server-url"]);
             BD_Server.reqDTO_SensorData request = new BD_Server.reqDTO_SensorData();
             request.data = data;
             BD_Server.ResponseDTO response = client.Post<BD_Server.ResponseDTO>(request);
+             */
         }
 
         private int getinterval()
@@ -355,6 +379,17 @@ namespace BD_Dashboard
             timer1.Stop();
             tcpServer1.Close();
             this.Close();
+        }
+        //form close clicked
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timer1.Stop();
+            tcpServer1.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tcpServer1.Send("d3_on");
         }
 
         
