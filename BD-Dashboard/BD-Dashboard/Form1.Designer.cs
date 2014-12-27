@@ -219,7 +219,7 @@
             this.txtHumid2Hi.Name = "txtHumid2Hi";
             this.txtHumid2Hi.Size = new System.Drawing.Size(51, 31);
             this.txtHumid2Hi.TabIndex = 36;
-            this.txtHumid2Hi.Text = "98";
+            this.txtHumid2Hi.Text = "100";
             this.txtHumid2Hi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHumid2Lo
@@ -366,7 +366,7 @@
             this.txtHumid3Hi.Name = "txtHumid3Hi";
             this.txtHumid3Hi.Size = new System.Drawing.Size(51, 31);
             this.txtHumid3Hi.TabIndex = 53;
-            this.txtHumid3Hi.Text = "98";
+            this.txtHumid3Hi.Text = "100";
             this.txtHumid3Hi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTemp3Lo
@@ -502,7 +502,7 @@
             this.txtHumid4Hi.Name = "txtHumid4Hi";
             this.txtHumid4Hi.Size = new System.Drawing.Size(51, 31);
             this.txtHumid4Hi.TabIndex = 67;
-            this.txtHumid4Hi.Text = "98";
+            this.txtHumid4Hi.Text = "100";
             this.txtHumid4Hi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTemp4Lo
@@ -684,7 +684,7 @@
             // 
             this.lblCO2.AutoSize = true;
             this.lblCO2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCO2.Location = new System.Drawing.Point(300, 547);
+            this.lblCO2.Location = new System.Drawing.Point(294, 547);
             this.lblCO2.Name = "lblCO2";
             this.lblCO2.Size = new System.Drawing.Size(58, 24);
             this.lblCO2.TabIndex = 81;
@@ -709,6 +709,7 @@
             this.button3.TabIndex = 83;
             this.button3.Text = "开关测试";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1

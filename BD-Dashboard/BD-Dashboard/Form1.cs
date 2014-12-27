@@ -176,6 +176,11 @@ namespace BD_Dashboard
                 cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp4.ToString() + ",'temp4')";
                 cm.ExecuteNonQuery();
             }
+            if (co2 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + co2.ToString() + ",'co2')";
+                cm.ExecuteNonQuery();
+            }
             /*
             //avg
             if (avghumid != -99)
@@ -265,17 +270,19 @@ namespace BD_Dashboard
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //check if txtbox are valid
+            
             this.Text = @"百朵食用菌有限公司 - 管理控制台 v" + GetCurrentVersion;
             displayTcpServerStatus();
             //temp warning
-            if (Convert.ToDouble(lblTemp2.Text) > Convert.ToDouble(txtTemp2Hi.Text))
+            if (!txtTemp2Hi.Text.IsNullOrEmpty()&&Convert.ToDouble(lblTemp2.Text) > Convert.ToDouble(txtTemp2Hi.Text))
             {
                 if (chkBeep.Checked)
                     Console.Beep(4000, warning_duration);
                 lblTemp2.ForeColor = Color.Red;
                 tcpServer1.Send("d2_off");
             }
-            else if (Convert.ToDouble(lblTemp2.Text) < Convert.ToDouble(txtTemp2Lo.Text))
+            else if (!txtTemp2Lo.Text.IsNullOrEmpty() && Convert.ToDouble(lblTemp2.Text) < Convert.ToDouble(txtTemp2Lo.Text))
             {
                 if (chkBeep.Checked)
                     Console.Beep(4000, warning_duration);
@@ -284,14 +291,14 @@ namespace BD_Dashboard
             }
             else
                 lblTemp2.ForeColor = Color.Black;
-            if (Convert.ToDouble(lblTemp3.Text) > Convert.ToDouble(txtTemp3Hi.Text))
+            if (!txtTemp3Hi.Text.IsNullOrEmpty() && Convert.ToDouble(lblTemp3.Text) > Convert.ToDouble(txtTemp3Hi.Text))
             {
                 if (chkBeep.Checked)
                     Console.Beep(4000, warning_duration);
                 lblTemp3.ForeColor = Color.Red;
                 tcpServer1.Send("d3_off");
             }
-            else if (Convert.ToDouble(lblTemp3.Text) < Convert.ToDouble(txtTemp3Lo.Text))
+            else if (!txtTemp3Lo.Text.IsNullOrEmpty() && Convert.ToDouble(lblTemp3.Text) < Convert.ToDouble(txtTemp3Lo.Text))
             {
                 if (chkBeep.Checked)
                     Console.Beep(4000, warning_duration);
@@ -300,14 +307,14 @@ namespace BD_Dashboard
             }
             else
                 lblTemp3.ForeColor = Color.Black;
-            if (Convert.ToDouble(lblTemp4.Text) > Convert.ToDouble(txtTemp4Hi.Text))
+            if (!txtTemp4Hi.Text.IsNullOrEmpty() && Convert.ToDouble(lblTemp4.Text) > Convert.ToDouble(txtTemp4Hi.Text))
             {
                 if (chkBeep.Checked)
                     Console.Beep(4000, warning_duration);
                 lblTemp4.ForeColor = Color.Red;
                 tcpServer1.Send("d4_off");
             }
-            else if (Convert.ToDouble(lblTemp4.Text) < Convert.ToDouble(txtTemp4Lo.Text))
+            else if (!txtTemp4Lo.Text.IsNullOrEmpty() && Convert.ToDouble(lblTemp4.Text) < Convert.ToDouble(txtTemp4Lo.Text))
             {
                 Console.Beep(4000, warning_duration);
                 lblTemp4.ForeColor = Color.Red;
@@ -316,21 +323,21 @@ namespace BD_Dashboard
             else
                 lblTemp4.ForeColor = Color.Black;
             //humidity warning
-            if (Convert.ToDouble(lblHumid2.Text) > Convert.ToDouble(txtHumid2Hi.Text) || Convert.ToDouble(lblHumid2.Text) < Convert.ToDouble(txtHumid2Lo.Text))
+            if (!txtHumid2Hi.Text.IsNullOrEmpty()&&!txtHumid2Lo.Text.IsNullOrEmpty()&&(Convert.ToDouble(lblHumid2.Text) > Convert.ToDouble(txtHumid2Hi.Text) || Convert.ToDouble(lblHumid2.Text) < Convert.ToDouble(txtHumid2Lo.Text)))
             {
                 Console.Beep(4000, warning_duration);
                 lblHumid2.ForeColor = Color.Red;
             }
             else
                 lblHumid2.ForeColor = Color.Black;
-            if (Convert.ToDouble(lblHumid3.Text) > Convert.ToDouble(txtHumid3Hi.Text) || Convert.ToDouble(lblHumid3.Text) < Convert.ToDouble(txtHumid3Lo.Text))
+            if (!txtHumid3Hi.Text.IsNullOrEmpty() && !txtHumid3Lo.Text.IsNullOrEmpty() && (Convert.ToDouble(lblHumid3.Text) > Convert.ToDouble(txtHumid3Hi.Text) || Convert.ToDouble(lblHumid3.Text) < Convert.ToDouble(txtHumid3Lo.Text)))
             {
                 Console.Beep(4000, warning_duration);
                 lblHumid3.ForeColor = Color.Red;
             }
             else
                 lblHumid3.ForeColor = Color.Black;
-            if (Convert.ToDouble(lblHumid4.Text) > Convert.ToDouble(txtHumid4Hi.Text) || Convert.ToDouble(lblHumid4.Text) < Convert.ToDouble(txtHumid4Lo.Text))
+            if (!txtHumid4Hi.Text.IsNullOrEmpty()&&!txtHumid4Lo.Text.IsNullOrEmpty()&&(Convert.ToDouble(lblHumid4.Text) > Convert.ToDouble(txtHumid4Hi.Text) || Convert.ToDouble(lblHumid4.Text) < Convert.ToDouble(txtHumid4Lo.Text)))
             {
                 Console.Beep(4000, warning_duration);
                 lblHumid4.ForeColor = Color.Red;
