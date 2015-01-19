@@ -91,6 +91,13 @@ namespace BD_Dashboard
             double temp3 = -99;
             double humid4 = -99;
             double temp4 = -99;
+            double humid5 = -99;
+            double temp5 = -99;
+            double humid6 = -99;
+            double temp6 = -99;
+            double humid7 = -99;
+            double temp7 = -99;
+            
             double avgtemp = -99;
             double avghumid = -99;
             double co2 = -99;
@@ -117,15 +124,36 @@ namespace BD_Dashboard
             { }
             try
             {
-                co2 = Convert.ToDouble(strtmp[6]);
+                humid5 = Convert.ToDouble(strtmp[6]);
+                temp5 = Convert.ToDouble(strtmp[7]);
+            }
+            catch
+            { }
+            try
+            {
+                humid6 = Convert.ToDouble(strtmp[8]);
+                temp6 = Convert.ToDouble(strtmp[9]);
+            }
+            catch
+            { }
+            try
+            {
+                humid7 = Convert.ToDouble(strtmp[10]);
+                temp7 = Convert.ToDouble(strtmp[11]);
+            }
+            catch
+            { }
+            try
+            {
+                co2 = Convert.ToDouble(strtmp[12]);
             }
             catch
             { }
             //try to find avg
-            if (humid2 != -99 && humid3 != -99 && humid4 != -99)
-                avghumid = (humid2 + humid3 + humid4) / 3;
-            if (temp2 != -99 && temp3 != -99 && temp4 != -99)
-                avgtemp = (temp2 + temp3 + temp4) / 3;
+            if (humid2 != -99 && humid3 != -99 && humid4 != -99 && humid5 != -99 && humid6 != -99 && humid7 != -99)
+                avghumid = (humid2 + humid3 + humid4 + humid5 + humid6 + humid7) / 6;
+            if (temp2 != -99 && temp3 != -99 && temp4 != -99 && temp5 != -99 && temp6 != -99 && temp7 != -99)
+                avgtemp = (temp2 + temp3 + temp4 + temp5 + temp6 + temp7) / 6;
             lblAvgHumid.Text = Math.Round(avghumid,1).ToString()+"";
             lblAvgTemp.Text = Math.Round(avgtemp, 1).ToString();
 
@@ -136,6 +164,16 @@ namespace BD_Dashboard
             lblHumid3.Text = humid3.ToString();
             lblTemp4.Text = temp4.ToString();
             lblHumid4.Text = humid4.ToString();
+
+            lblTemp5.Text = temp5.ToString();
+            lblHumid5.Text = humid5.ToString();
+            lblTemp6.Text = temp6.ToString();
+            lblHumid6.Text = humid6.ToString();
+            lblTemp7.Text = temp7.ToString();
+            lblHumid7.Text = humid7.ToString();
+
+
+
             lblCO2.Text = co2.ToString();
 
 
@@ -176,6 +214,39 @@ namespace BD_Dashboard
                 cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp4.ToString() + ",'temp4')";
                 cm.ExecuteNonQuery();
             }
+
+            //
+            if (humid5 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid5.ToString() + ",'humid5')";
+                cm.ExecuteNonQuery();
+            }
+            if (temp5 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp5.ToString() + ",'temp5')";
+                cm.ExecuteNonQuery();
+            }
+            if (humid6 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid6.ToString() + ",'humid6')";
+                cm.ExecuteNonQuery();
+            }
+            if (temp6 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp6.ToString() + ",'temp6')";
+                cm.ExecuteNonQuery();
+            }
+            if (humid7 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + humid7.ToString() + ",'humid7')";
+                cm.ExecuteNonQuery();
+            }
+            if (temp7 != -99)
+            {
+                cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + temp7.ToString() + ",'temp7')";
+                cm.ExecuteNonQuery();
+            }
+
             if (co2 != -99)
             {
                 cm.CommandText = @"insert into dbo.sensordata (value,[type]) values (" + co2.ToString() + ",'co2')";
