@@ -27,7 +27,7 @@ namespace blindwork
     /// 支付
     /// </summary>
     [Route("/purchase/pay")]
-    public class PurchaseRequest : IReturn<OrderModel>
+    public class PaymentRequest : IReturn<OrderModel>
     {
         public int order_id { get; set; }
         /// <summary>
