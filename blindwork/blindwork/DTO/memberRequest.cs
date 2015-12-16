@@ -6,9 +6,21 @@ using System.Web;
 
 namespace blindwork
 {
-    [Route("/member/signin")]
+    /// <summary>
+    /// 登录
+    /// </summary>
+
+    [Route("/member/login")]
     public class LoginRequest : IReturn<MemberModel>
     {
-        public string token { get; set; }
+        public string cellphone { get; set; }
+        public string confirmation_code { get; set; }
+    }
+
+    //wechat 登录,暂时没用
+    [Route("/member/wxlogin")]
+    public class WXLoginRequest : IReturn<MemberModel>
+    {
+        public string wechatid { get; set; }
     }
 }
