@@ -10,12 +10,20 @@ namespace blindwork
     /// 登录
     /// </summary>
 
-    [Route("/member/login")]
-    public class LoginRequest : IReturn<MemberModel>
+    [Route("/member")]
+    public class GetMemberRequest : IReturn<MemberModel>
     {
-        public string cellphone { get; set; }
-        public string confirmation_code { get; set; }
     }
+
+    //[Route("/member/judememt")]
+    //public class JudementLogin
+    //{
+    //    public string cellphone { get; set; }
+    //    public string fullname { get; set; }
+    //    public string email { get; set; }
+    //    public string confirmation_code { get; set; }
+    //}
+    
 
     //wechat 登录,暂时没用
     [Route("/member/wxlogin")]

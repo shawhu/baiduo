@@ -6,14 +6,30 @@ using System.Web;
 
 namespace blindwork
 {
+    ///// <summary> 
+    ///// 购买  已死
+    ///// </summary>
+    //[Route("/purchase")]
+    //public class PurchaseRequest : IReturn<OrderModel>
+    //{
+    //    public int address_id { get; set; }
+    //    public string cellphone { get; set; }
+    //    public string address { get; set; }
+    //    public string city { get; set; }
+    //    public string province { get; set; }
+    //    public double delivery_date_scheduled { get; set; }
+    //    public int amount { get; set; }
+    //    public int applied_code_id { get; set; }
+    //    public string zipcode { get; set; }
+    //}
+
     /// <summary>
     /// 购买
     /// </summary>
     [Route("/purchase")]
     public class PurchaseRequest : IReturn<OrderModel>
     {
-        public string order_id { get; set; }
-        public string member_id { get; set; }
+        public int order_id { get; set; }
         public string cellphone { get; set; }
         public string confirmation_code { get; set; }
         public string address { get; set; }
@@ -21,8 +37,9 @@ namespace blindwork
         public string province { get; set; }
         public string fullname { get; set; }
         public double delivery_date_scheduled { get; set; }
-        public string amount { get; set; }
+        public int amount { get; set; }
     }
+
     /// <summary>
     /// 支付
     /// </summary>
@@ -33,7 +50,7 @@ namespace blindwork
         /// <summary>
         /// 这里传入成功了还是失败了等等支付的结果
         /// </summary>
-        public string status { get; set; }
+        public bool status { get; set; }
     }
     /// <summary>
     /// 获取所有订单
@@ -57,6 +74,7 @@ namespace blindwork
     public class Orders
     {
         public List<OrderModel> myorders { get; set; }
+
     }
 
 }
