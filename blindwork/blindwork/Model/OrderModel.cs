@@ -132,7 +132,7 @@ namespace blindwork
         internal static OrderModel PaymentRequest(int order_id, int member_id, bool status)
         {
             SqlDataObject dbo = new SqlDataObject();
-            dbo.SqlComm = "select * from t_order where order_id = @order_id and member_id = @member_id and disabled = 0";
+            dbo.SqlComm = "select * from t_order where order_id = @order_id and member_id = @member_id";
             DataTable dt = dbo.GetDataTable(new SqlParameter("@order_id", order_id),new SqlParameter("@member_id",member_id));
             if (dt.Rows.Count == 0)
                 throw new ArgumentException("order_id或member_id错误");

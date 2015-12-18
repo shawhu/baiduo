@@ -169,7 +169,6 @@ namespace blindwork
             throw new AuthenticationException("Login failed, cellphone not found");
         }
 
-
         internal static MemberModel SignUpMember(string cellphone, string fullname, string confirmation_code)
         {
             MemberModel member;
